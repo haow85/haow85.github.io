@@ -1,58 +1,327 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hao Wang</title>
-     <style>
-        .float-left {
-            float: left;
-            margin-right: 10px;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hao Wang</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #2c7be5;
+    --accent-dark: #1e5bb0;
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --muted: #6c7a89;
+    --border: #e4e9f0;
+    --shadow: 0 4px 20px rgba(26, 58, 92, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 50%, #3d7ab8 100%);
+    color: #fff;
+    padding: 64px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 85% 20%, rgba(255,255,255,0.12), transparent 50%);
+    pointer-events: none;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-content {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .hero-photo {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.35);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  }
+  .hero-text { flex: 1; min-width: 260px; }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .hero .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.92;
+    margin-bottom: 22px;
+  }
+  .hero .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .hero .tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+  }
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    font-size: 0.95rem;
+  }
+  .contact-bar a {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .contact-bar a:hover { opacity: 1; text-decoration: underline; }
+  .contact-bar span::before { margin-right: 6px; }
+  /* Main content */
+  main { padding: 48px 0; }
+  section { margin-bottom: 52px; }
+  .section-title {
+    font-size: 1.55rem;
+    color: var(--primary);
+    border-left: 5px solid var(--accent);
+    padding-left: 14px;
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(26, 58, 92, 0.12);
+  }
+  .card h3 {
+    color: var(--primary);
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+  }
+  .card .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 5px; font-size: 0.97rem; }
+  .bio p { font-size: 1.02rem; margin-bottom: 14px; }
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .skill-item {
+    background: #eef3fb;
+    border: 1px solid #d6e3f5;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    color: var(--primary);
+  }
+  /* Education table */
+  .edu-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .edu-table th {
+    background: var(--primary);
+    color: #fff;
+    text-align: left;
+    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .edu-table td {
+    padding: 13px 18px;
+    border-top: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+  .edu-table tr:nth-child(even) td { background: #f5f8fd; }
+  /* Awards */
+  .award-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .award-item:last-child { border-bottom: none; }
+  .award-title { font-weight: 600; color: var(--primary); font-size: 1rem; }
+  .award-venue { color: var(--muted); font-size: 0.9rem; margin: 2px 0 4px; }
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f0a500, #e8920a);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  /* Publications list */
+  .pub-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-title { font-weight: 600; color: var(--primary); }
+  .pub-authors { color: var(--muted); font-size: 0.9rem; }
+  .pub-venue { font-size: 0.9rem; margin-top: 2px; }
+  footer {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+    border-top: 1px solid var(--border);
+    background: #fff;
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.1rem; }
+    .edu-table th, .edu-table td { padding: 10px; font-size: 0.85rem; }
+  }
+</style>
 </head>
 <body>
-    <h1>Hao Wang</h1>
-    <div>
-    <img src="1118621988.jpg" alt="Hao Wang" width="15%" class="float-left">
-    <p>I was the founder and CEO of Ratidar Technologies LLC. Before my startup adventure, I worked for Funplus as the AI Lab 
-    Director. I had worked for IT companies for over 14 years. My expertise lied mostly in data mining and machine learning.
-    I developed products such as Douban Group Recommendation, Lenovo E-shop Recommendation, Netease Jokes, Funplus Game Prop Recommendation, etc.
-    I published 45 papers at international conferences and journals with 1 <b>Best Paper Award</b> and 4 <b>Best Oral Presentation Awards.</b>
-    </p>
-    <p>My team won 3rd place (Gold Medal) in 2006 ACM/ICPC Rocky Mountain Regional. I won 2nd place (Special Prize) in Shaan Xi Province, China in NECCS 2004 and
-        obtained a Bronze Medal (Third Prize) in the National Final (Oral English Competition) of NECCS 2004. I was No.1 in the English Test (Science/Engineering Track) of Jinan City, Shandong Province on the College Entrance Exam
-        of China in 2003.
-    <p>I graduated from University of Utah in 2010 (Master in Computing / Computer Science) and 2008 (Bachelor of Science / Computer Science, Mathematics with a minor in Economics). I also hold a part-time MBA
-    degree from University of International Business and Economics (2017).</p>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <img src="1118621988.jpg" alt="Hao Wang" class="hero-photo" />
+      <div class="hero-text">
+        <h1>Hao Wang</h1>
+        <div class="subtitle">Founder &amp; CEO · AI Lab Director · Data Mining &amp; Machine Learning</div>
+        <div class="tags">
+          <span class="tag">Recommender Systems</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Data Mining</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Risk Control</span>
+          <span class="tag">Blockchain</span>
+        </div>
+        <div class="contact-bar">
+          <a href="mailto:Haow85@live.com">&#9993; Haow85@live.com</a>
+          <span>💬 WeChat ID: haow85</span>
+        </div>
+      </div>
     </div>
-    <p>
-        <b>Awards</b>
-        <ul>
-            <li>Automatic Classification of Museum Artifacts based on Unsupervised Models
-                <br>Hao Wang
-                <br>International Conference on Software Engineering and Information Management (EI-Compendex), 2024
-                <br><b>Best Oral Presentation Award</b>
-            </li>
-            <li>Skellam Rank: Fair Learning to Rank Algorithm Based on Poisson Process and Skellam Distribution for Recommender Systems
-                <br>Hao Wang
-                <br>International Conference on Artificial Intelligence and Blockchain Technology (EI-Compendex), 2023
-                <br><b>Best Oral Presentation Award</b>
-            </li>
-            <li>MatMat: Matrix Factorization by Matrix Fitting 
-                <br>Hao Wang
-                <br>International Conference on Information Systems and Computer Aided Education (EI-Compendex), 2021
-                <br><b>Best Oral Presentation Award</b>
-            </li>
-            <li>MatRec: Matrix Factorization for Highly Skewed Dataset 
-                <br>Hao Wang, Bing Ruan
-                <br>International Conference on Big Data Technologies (EI-Compendex), 2020
-                <br><b>Best Oral Presentation Award</b>
-            </li>
-            <li>Optimal Bandwidth Selection for MLS Surfaces 
-                <br>Hao Wang, Carlos Scheidegger, Claudio Silva
-                <br>IEEE Shape Modeling International Conference (CCF-C / EI-Compendex), 2008
-                <br><b>Best Paper Award</b>
-            </li>
-        </ul>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="bio">
+    <h2 class="section-title">About</h2>
+    <div class="card">
+      <p>I am the Founder and CEO of <strong>Ratidar Technologies LLC</strong>. Before my startup adventure, I served as the AI Lab Director at <strong>Funplus</strong>. I have over 14 years of R&amp;D and management experience in the internet and technology industries.</p>
+      <p>My expertise lies primarily in <strong>data mining</strong> and <strong>machine learning</strong>, with deep hands-on experience in recommender systems, risk control and anti-fraud, web crawling, and chatbots. I have built products such as <em>Douban Group Recommendation</em>, <em>Lenovo E-shop Recommendation</em>, <em>NetEase Jokes</em>, and <em>Funplus Game Prop Recommendation</em>.</p>
+      <p>I have published <strong>45 papers</strong> at international conferences and journals, receiving <strong>1 Best Paper Award</strong> and <strong>4 Best Oral Presentation Awards</strong>. I also hold a CATTI Level-2 Translation Certificate.</p>
+      <p>My team won 3rd place (Gold Medal) in 2006 ACM/ICPC Rocky Mountain Regional. I won 2nd place (Special Prize) in Shaan Xi Province, China in NECCS 2004 and obtained a Bronze Medal (Third Prize) in the National Final (Oral English Competition) of NECCS 2004. I was No.1 in the English Test (Science/Engineering Track) of Jinan City, Shandong Province on the College Entrance Exam of China in 2003.</p>
+      <p>I graduated from University of Utah in 2010 (Master in Computing / Computer Science) and 2008 (Bachelor of Science / Computer Science, Mathematics with a minor in Economics). I also hold a part-time MBA degree from University of International Business and Economics (2017).</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Honors &amp; Awards</h2>
+    <div class="card">
+      <div class="award-item">
+        <div class="award-title">3rd Place (Gold Medal) — ACM/ICPC Rocky Mountain Regional</div>
+        <div class="award-venue">2006</div>
+      </div>
+      <div class="award-item">
+        <div class="award-title">2nd Place (Special Prize) — National English Contest for College Students (NECCS), Shaanxi Province, China</div>
+        <div class="award-venue">2004</div>
+      </div>
+      <div class="award-item">
+        <div class="award-title">Bronze Medal (Third Prize) — NECCS National Final (Oral English Competition), China</div>
+        <div class="award-venue">2004</div>
+      </div>
+      <div class="award-item">
+        <div class="award-title">No. 1 in English Exam (Science/Engineering Track), Jinan City, Shandong Province — National College Entrance Exam of China</div>
+        <div class="award-venue">2003</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Selected Publications (Award-Winning)</h2>
+    <div class="card">
+      <div class="pub-item">
+        <div class="pub-title">Automatic Classification of Museum Artifacts based on Unsupervised Models</div>
+        <div class="pub-authors">Hao Wang</div>
+        <div class="pub-venue">International Conference on Software Engineering and Information Management (EI-Compendex), 2024</div>
+        <span class="badge">Best Oral Presentation Award</span>
+      </div>
+      <div class="pub-item">
+        <div class="pub-title">Skellam Rank: Fair Learning to Rank Algorithm Based on Poisson Process and Skellam Distribution for Recommender Systems</div>
+        <div class="pub-authors">Hao Wang</div>
+        <div class="pub-venue">International Conference on Artificial Intelligence and Blockchain Technology (EI-Compendex), 2023</div>
+        <span class="badge">Best Oral Presentation Award</span>
+      </div>
+      <div class="pub-item">
+        <div class="pub-title">MatMat: Matrix Factorization by Matrix Fitting</div>
+        <div class="pub-authors">Hao Wang</div>
+        <div class="pub-venue">International Conference on Information Systems and Computer Aided Education (EI-Compendex), 2021</div>
+        <span class="badge">Best Oral Presentation Award</span>
+      </div>
+      <div class="pub-item">
+        <div class="pub-title">MatRec: Matrix Factorization for Highly Skewed Dataset</div>
+        <div class="pub-authors">Hao Wang, Bing Ruan</div>
+        <div class="pub-venue">International Conference on Big Data Technologies (EI-Compendex), 2020</div>
+        <span class="badge">Best Oral Presentation Award</span>
+      </div>
+      <div class="pub-item">
+        <div class="pub-title">Optimal Bandwidth Selection for MLS Surfaces</div>
+        <div class="pub-authors">Hao Wang, Carlos Scheidegger, Claudio Silva</div>
+        <div class="pub-venue">IEEE Shape Modeling International Conference (CCF-C / EI-Compendex), 2008</div>
+        <span class="badge">Best Paper Award</span>
+      </div>
+    </div>
+    <p style="margin-top:14px; color: var(--muted); font-size: 0.92rem;">
+      45 papers published at international conferences and journals in total.
     </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    &copy; 2026 Hao Wang. All rights reserved.
+  </div>
+</footer>
+
 </body>
 </html>
