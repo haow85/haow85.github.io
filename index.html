@@ -17,11 +17,13 @@
     --shadow: 0 4px 20px rgba(26, 58, 92, 0.08);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 14px; }
   body {
     font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.65;
+    line-height: 1.55;
+    font-size: 0.9rem;
     -webkit-font-smoothing: antialiased;
   }
   .container {
@@ -33,7 +35,7 @@
   .hero {
     background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 50%, #3d7ab8 100%);
     color: #fff;
-    padding: 64px 0 56px;
+    padding: 48px 0 42px;
     position: relative;
     overflow: hidden;
   }
@@ -62,34 +64,34 @@
   }
   .hero-text { flex: 1; min-width: 260px; }
   .hero h1 {
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
   }
   .hero .subtitle {
-    font-size: 1.2rem;
+    font-size: 0.95rem;
     opacity: 0.92;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
   }
   .hero .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 26px;
+    gap: 8px;
+    margin-bottom: 18px;
   }
   .hero .tag {
     background: rgba(255,255,255,0.15);
     border: 1px solid rgba(255,255,255,0.3);
-    padding: 6px 14px;
+    padding: 4px 11px;
     border-radius: 20px;
-    font-size: 0.88rem;
+    font-size: 0.78rem;
   }
   .contact-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 22px;
-    font-size: 0.95rem;
+    gap: 20px;
+    font-size: 0.85rem;
   }
   .contact-bar a {
     color: #fff;
@@ -100,23 +102,23 @@
   .contact-bar a:hover { opacity: 1; text-decoration: underline; }
   .contact-bar span::before { margin-right: 6px; }
   /* Main content */
-  main { padding: 48px 0; }
-  section { margin-bottom: 52px; }
+  main { padding: 36px 0; }
+  section { margin-bottom: 38px; }
   .section-title {
-    font-size: 1.55rem;
+    font-size: 1.3rem;
     color: var(--primary);
-    border-left: 5px solid var(--accent);
-    padding-left: 14px;
-    margin-bottom: 22px;
+    border-left: 4px solid var(--accent);
+    padding-left: 12px;
+    margin-bottom: 18px;
     font-weight: 600;
   }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 28px;
+    border-radius: 10px;
+    padding: 18px 22px;
     box-shadow: var(--shadow);
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .card:hover {
@@ -125,17 +127,17 @@
   }
   .card h3 {
     color: var(--primary);
-    font-size: 1.15rem;
+    font-size: 1rem;
     margin-bottom: 4px;
   }
   .card .meta {
     color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 12px;
+    font-size: 0.82rem;
+    margin-bottom: 10px;
   }
-  .card ul { padding-left: 20px; }
-  .card li { margin-bottom: 5px; font-size: 0.97rem; }
-  .bio p { font-size: 1.02rem; margin-bottom: 14px; }
+  .card ul { padding-left: 18px; }
+  .card li { margin-bottom: 4px; font-size: 0.88rem; }
+  .bio p { font-size: 0.92rem; margin-bottom: 11px; }
   /* Skills */
   .skills-grid {
     display: grid;
@@ -174,59 +176,75 @@
   }
   .edu-table tr:nth-child(even) td { background: #f5f8fd; }
   /* Awards */
-  .award-item {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
+  .card .awards-list {
+    list-style: none;
+    padding-left: 0;
+    column-count: 1;
+    column-gap: 2.2em;
   }
-  .award-item:last-child { border-bottom: none; }
-  .award-title { font-weight: 600; color: var(--primary); font-size: 1rem; }
-  .award-venue { color: var(--muted); font-size: 0.9rem; margin: 2px 0 4px; }
+  .card .award-item {
+    display: flex;
+    padding-bottom: 0.9em;
+    margin-bottom: 0;
+    break-inside: avoid;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+  .award-year {
+    flex: 0 0 4em;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  .award-text { flex: 1; }
   .badge {
     display: inline-block;
     background: linear-gradient(135deg, #f0a500, #e8920a);
     color: #fff;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 2px 8px;
     border-radius: 12px;
     text-transform: uppercase;
     letter-spacing: 0.4px;
   }
   /* Publications list */
   .pub-item {
-    padding: 16px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
   }
   .pub-item:last-child { border-bottom: none; }
-  .pub-title { font-weight: 600; color: var(--primary); }
-  .pub-authors { color: var(--muted); font-size: 0.9rem; }
-  .pub-venue { font-size: 0.9rem; margin-top: 2px; }
+  .pub-title { font-weight: 600; color: var(--primary); font-size: 0.88rem; }
+  .pub-authors { color: var(--muted); font-size: 0.8rem; }
+  .pub-venue { font-size: 0.8rem; margin-top: 2px; }
   .pub-year {
     display: inline-block;
-    margin: 24px 0 4px;
-    padding: 3px 12px;
-    font-size: 0.8rem;
+    margin: 18px 0 4px;
+    padding: 2px 10px;
+    font-size: 0.74rem;
     font-weight: 700;
     letter-spacing: 1px;
     color: #fff;
     background: var(--primary);
-    border-radius: 12px;
+    border-radius: 10px;
   }
   .pub-year.first { margin-top: 0; }
-  .pub-meta { font-size: 0.86rem; color: var(--muted); margin-top: 3px; }
+  .pub-meta { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
   .pub-item a { color: inherit; text-decoration: none; }
   .pub-item a:hover { text-decoration: underline; }
   footer {
     text-align: center;
-    padding: 32px 0;
+    padding: 26px 0;
     color: var(--muted);
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     border-top: 1px solid var(--border);
     background: #fff;
   }
+  @media (min-width: 992px) {
+    .card .awards-list { column-count: 2; }
+  }
   @media (max-width: 640px) {
-    .hero h1 { font-size: 2.1rem; }
-    .edu-table th, .edu-table td { padding: 10px; font-size: 0.85rem; }
+    .hero h1 { font-size: 1.6rem; }
+    .edu-table th, .edu-table td { padding: 10px; font-size: 0.8rem; }
   }
 </style>
 </head>
@@ -272,42 +290,17 @@
   <section>
     <h2 class="section-title">Honors &amp; Awards</h2>
     <div class="card">
-      <div class="award-item">
-        <div class="award-title">Best Oral Presentation Award — International Conference on Software Engineering and Information Management (ICSIM)</div>
-        <div class="award-venue">2024</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">Best Oral Presentation Award — International Conference on Artificial Intelligence and Blockchain Technology (AIBT)</div>
-        <div class="award-venue">2023</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">Best Oral Presentation Award — International Conference on Information Systems and Computer Aided Education (IEEE ICISCAE)</div>
-        <div class="award-venue">2021</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">Best Oral Presentation Award — International Conference on Big Data Technologies (ICBDT)</div>
-        <div class="award-venue">2020</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">Best Paper Award — IEEE Shape Modeling International Conference (SMI)</div>
-        <div class="award-venue">2008</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">3rd Place (Gold Medal) — ACM/ICPC Rocky Mountain Regional</div>
-        <div class="award-venue">2006</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">2nd Place (Special Prize) — National English Contest for College Students (NECCS), Shaanxi Province, China</div>
-        <div class="award-venue">2004</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">Bronze Medal (Third Prize) — NECCS National Final (Oral English Competition), China</div>
-        <div class="award-venue">2004</div>
-      </div>
-      <div class="award-item">
-        <div class="award-title">No. 1 in English Exam (Science/Engineering Track), Jinan City, Shandong Province — National College Entrance Exam of China</div>
-        <div class="award-venue">2003</div>
-      </div>
+      <ul class="awards-list">
+        <li class="award-item"><span class="award-year">2024</span><span class="award-text">Best Oral Presentation Award, ICSIM</span></li>
+        <li class="award-item"><span class="award-year">2023</span><span class="award-text">Best Oral Presentation Award, AIBT</span></li>
+        <li class="award-item"><span class="award-year">2021</span><span class="award-text">Best Oral Presentation Award, IEEE ICISCAE</span></li>
+        <li class="award-item"><span class="award-year">2020</span><span class="award-text">Best Oral Presentation Award, ICBDT</span></li>
+        <li class="award-item"><span class="award-year">2008</span><span class="award-text">Best Paper Award, IEEE SMI</span></li>
+        <li class="award-item"><span class="award-year">2006</span><span class="award-text">3rd Place (Gold Medal), ACM/ICPC Rocky Mountain Regional</span></li>
+        <li class="award-item"><span class="award-year">2004</span><span class="award-text">2nd Place (Special Prize), NECCS, Shaanxi Province, China</span></li>
+        <li class="award-item"><span class="award-year">2004</span><span class="award-text">Bronze Medal (Third Prize), NECCS National Final (Oral English)</span></li>
+        <li class="award-item"><span class="award-year">2003</span><span class="award-text">No. 1 in English Exam (Science/Engineering Track), Jinan City, Shandong Province</span></li>
+      </ul>
     </div>
   </section>
 
@@ -624,7 +617,7 @@
       <div class="pub-item">
         <div class="pub-title">Optimal Bandwidth Selection for MLS Surfaces</div>
         <div class="pub-authors">Hao Wang, Carlos Scheidegger, Claudio Silva</div>
-        <div class="pub-meta">2008 IEEE International Conference on Shape Modeling and Applications (SMI) · 2008 (CCF-C / EI-Compendex)</div>
+        <div class="pub-meta">2008 IEEE International Conference on Shape Modeling and Applications (SMI) · 2008 (EI-Compendex)</div>
         <span class="badge">Best Paper Award</span>
       </div>
 
